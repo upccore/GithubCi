@@ -14,28 +14,32 @@ def register_client_routes(app):
     @app.route("/clients", methods=["GET"])
     def get_clients():
         clients = Client.query.all()
-        return jsonify([
-            {
-                "id": c.id,
-                "name": c.name,
-                "surname": c.surname,
-                "car_number": c.car_number,
-            }
-            for c in clients
-        ])
+        return jsonify(
+            [
+                {
+                    "id": c.id,
+                    "name": c.name,
+                    "surname": c.surname,
+                    "car_number": c.car_number,
+                }
+                for c in clients
+            ]
+        )
 
     @app.route("/clients/<int:client_id>", methods=["GET"])
     def get_client(client_id):
         client = db.session.get(Client, client_id)
         if not client:
             abort(404)
-        return jsonify({
-            "id": client.id,
-            "name": client.name,
-            "surname": client.surname,
-            "credit_card": client.credit_card,
-            "car_number": client.car_number,
-        })
+        return jsonify(
+            {
+                "id": client.id,
+                "name": client.name,
+                "surname": client.surname,
+                "credit_card": client.credit_card,
+                "car_number": client.car_number,
+            }
+        )
 
     @app.route("/clients", methods=["POST"])
     def create_client():
@@ -128,7 +132,9 @@ def register_client_parking_routes(app):
         client_parking.time_out = datetime.now()
         parking.count_available_places += 1
 
-        hours = (client_parking.time_out - client_parking.time_in).total_seconds() / 3600
+        hours = (
+            client_parking.time_out - client_parking.time_in
+        ).total_seconds() / 3600
         price = hours * 100
 
         db.session.commit()
