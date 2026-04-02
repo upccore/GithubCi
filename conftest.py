@@ -13,8 +13,8 @@ def pytest_configure(config):
 @pytest.fixture
 def app():
     app = create_app()
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
-    app.config['TESTING'] = True
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+    app.config["TESTING"] = True
 
     init_routes(app)
 
@@ -22,18 +22,18 @@ def app():
         db.create_all()
 
         client = ClientFactory(
-            name='Иван',
-            surname='Иванов',
-            credit_card='1234-5678-9012-3456',
-            car_number='A123BC'
+            name="Иван",
+            surname="Иванов",
+            credit_card="1234-5678-9012-3456",
+            car_number="A123BC",
         )
         db.session.add(client)
 
         parking = Parking(
-            address='ул. Тестовая, 1',
+            address="ул. Тестовая, 1",
             opened=True,
             count_places=10,
-            count_available_places=10
+            count_available_places=10,
         )
         db.session.add(parking)
 
@@ -41,7 +41,7 @@ def app():
             client_id=1,
             parking_id=1,
             time_in=datetime.now() - timedelta(hours=2),
-            time_out=datetime.now()
+            time_out=datetime.now(),
         )
         db.session.add(client_parking)
 
