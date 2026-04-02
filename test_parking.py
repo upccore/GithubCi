@@ -65,7 +65,7 @@ def test_car_in(client, db_session):
     db_session.commit()
 
     parking = db_session.get(Parking, 1)
-    assert parking.opened == True
+    assert parking.opened is True
 
     before = parking.count_available_places
 
