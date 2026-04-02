@@ -1,6 +1,7 @@
 import pytest
-from models import Parking, ClientParking, Client
+
 from factories import ClientFactory, ParkingFactory
+from models import Client, ClientParking, Parking
 
 
 @pytest.mark.parametrize("url", ["/clients", "/clients/1"])

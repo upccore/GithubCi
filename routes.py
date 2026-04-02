@@ -1,6 +1,8 @@
-from flask import request, jsonify, abort
 from datetime import datetime
-from models import db, Client, Parking, ClientParking
+
+from flask import abort, jsonify, request
+
+from models import Client, ClientParking, Parking, db
 
 
 def init_routes(app):

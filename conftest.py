@@ -1,8 +1,10 @@
-import pytest
-from app import create_app
-from models import db, Parking, ClientParking
-from factories import ClientFactory
 from datetime import datetime, timedelta
+
+import pytest
+
+from app import create_app
+from factories import ClientFactory
+from models import ClientParking, Parking, db
 from routes import init_routes
 
 
