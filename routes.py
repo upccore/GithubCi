@@ -74,6 +74,11 @@ def register_parking_routes(app):
 
 
 def register_client_parking_routes(app):
+    register_car_in_route(app)
+    register_car_out_route(app)
+
+
+def register_car_in_route(app):
 
     @app.route("/client_parkings", methods=["POST"])
     def car_in():
@@ -106,6 +111,9 @@ def register_client_parking_routes(app):
         db.session.commit()
 
         return jsonify({"message": "Заезд выполнен"}), 200
+
+
+def register_car_out_route(app):
 
     @app.route("/client_parkings", methods=["DELETE"])
     def car_out():
